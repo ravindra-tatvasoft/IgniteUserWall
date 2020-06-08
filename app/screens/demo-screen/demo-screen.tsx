@@ -112,15 +112,18 @@ export const DemoScreen: Component = observer(function DemoScreen() {
       })
       // make an API call for the demo
       // Don't do API like this, use store's API
-      const demo = new Api()
-      demo.setup()
-      demo.getUser("1")
+      // const demo = new Api()
+      // demo.setup()
+      // demo.getUser("1")
       // Let's do some async storage stuff
-      await save("Cool Name", "Boaty McBoatface")
+      //await save("Cool Name", "Boaty McBoatface")
+      onWelcome()
     },
     [],
   )
-
+  const onWelcome = () => {
+    navigation.navigate("user")
+  }
   return (
     <View style={FULL}>
       <Wallpaper />

@@ -32,7 +32,7 @@ export interface CheckboxProps {
   tx?: string
 
   /**
-   * Multiline or clipped single line?
+   * Multiline or clipped single line?                       
    */
   multiline?: boolean
 

@@ -15,10 +15,13 @@ import React, { useState, useEffect, useRef, FunctionComponent as Component } fr
 import { NavigationContainerRef } from "@react-navigation/native"
 import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
 import * as storage from "./utils/storage"
+import { YellowBox, Text, TextInput,  } from "react-native"
+import { contains } from "ramda"
+
 import {
   useBackButtonHandler,
   RootNavigator,
-  canExit,
+  canExit,exitRoutes,
   setRootNavigation,
   useNavigationPersistence,
 } from "./navigation"
@@ -29,6 +32,26 @@ import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
 enableScreens()
+
+/**
+ * Ignore some yellowbox warnings. Some of these are for deprecated functions
+ * that we haven't gotten around to replacing yet.
+ */
+YellowBox.ignoreWarnings([
+  "componentWillMount is deprecated",
+  "componentWillReceiveProps is deprecated",
+  "Require cycle:",
+])
+
+/**
+ * Disable Font Scalling 
+ */
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
+
+TextInput.defaultProps = TextInput.defaultProps || {};
+TextInput.defaultProps.allowFontScaling = false;
+ 
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 

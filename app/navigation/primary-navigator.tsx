@@ -7,31 +7,16 @@
 import React from "react"
 
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
-import { WelcomeScreen, DemoScreen } from "../screens"
-
-/**
- * This type allows TypeScript to know what routes are defined in this navigator
- * as well as what properties (if any) they might take when navigating to them.
- *
- * If no params are allowed, pass through `undefined`. Generally speaking, we
- * recommend using your MobX-State-Tree store(s) to keep application state
- * rather than passing state through navigation params.
- *
- * For more information, see this documentation:
- *   https://reactnavigation.org/docs/params/
- *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
- */
-export type PrimaryParamList = {
-  welcome: undefined
-  demo: undefined
-}
-
+import { WelcomeScreen, DemoScreen, UserScreen} from "../screens"
+import {PrimaryParamList } from './types'
+  
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
 const Stack = createNativeStackNavigator<PrimaryParamList>()
 
 export function PrimaryNavigator() {
   return (
     <Stack.Navigator
+    initialRouteName = 'welcome'
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
@@ -39,6 +24,7 @@ export function PrimaryNavigator() {
     >
       <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
+      <Stack.Screen name="user" component={UserScreen} />
     </Stack.Navigator>
   )
 }
